@@ -5,8 +5,6 @@ import '../data/model/Weather.dart';
 import 'weather_detail_page.dart';
 
 class WeatherSearchPage extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +17,8 @@ class WeatherSearchPage extends StatelessWidget {
         child: BlocListener<WeatherBloc, WeatherState>(
           listener: (context, state) {
             if (state is WeatherError) {
-              Scaffold.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)
-                  )
-              );
+              Scaffold.of(context)
+                  .showSnackBar(SnackBar(content: Text(state.message)));
             }
           },
           child: BlocBuilder<WeatherBloc, WeatherState>(
@@ -69,11 +65,14 @@ class WeatherSearchPage extends StatelessWidget {
         ),
         RaisedButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) =>
-                    WeatherDetailPage(
-                      masterWeather: weather,
-                    )));
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => BlocProvider.value(
+                  value: BlocProvider.of<WeatherBloc>(context),
+                  child: WeatherDetailPage(masterWeather: weather),
+                ),
+              ),
+            );
           },
           child: Text('See Detail'),
           color: Colors.lightBlue[100],

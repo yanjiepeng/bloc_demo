@@ -19,7 +19,10 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
     if (event is GetWeather) {
       try {
+        print('============= ${this.weatherRepository is FakeWeatherRepository}');
+
         final weather = await weatherRepository.fetchWeather(event.cityName);
+        print(weather);
         yield WeatherLoaded(weather);
       } on NetWorkError {
         yield WeatherError('Couldn`t fecth weather .is the device online?');

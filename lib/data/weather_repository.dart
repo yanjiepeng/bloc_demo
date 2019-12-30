@@ -9,42 +9,34 @@ abstract class WeatherRepository {
   Future<Weather> fetchDetailedWeather(String cityName);
 }
 
-
 class FakeWeatherRepository implements WeatherRepository {
-
-
   //缓存天气
   double cachedTempCelsius;
-  @override
-  Future<Weather> fetchDetailedWeather(String cityName) {
-
-    return Future.delayed(Duration(seconds: 1) , (){
-
-      final random = Random();
-      // 模拟网络出错
-      if(random.nextBool()) {
-        throw NetWorkError();
-      }
-
-      cachedTempCelsius = 20+random.nextInt(15) +random.nextDouble();
-
-      return Weather(cityName:  cityName , temperatureCelsius:  cachedTempCelsius );
-    }
-    );
-  }
 
   @override
   Future<Weather> fetchWeather(String cityName) {
-    return Future.delayed(Duration(seconds: 1) , (){
+    return Future.delayed(Duration(seconds: 1), () {
+      final random = Random();
+      // 模拟网络出错
+      if (random.nextBool()) {
+        throw NetWorkError();
+      }
 
-      return Weather(cityName: cityName , temperatureCelsius: cachedTempCelsius , temperatureFahrenheit:  cachedTempCelsius * 1.8 + 32 );
+      cachedTempCelsius = 20 + random.nextInt(15) + random.nextDouble();
 
+      return Weather(cityName: cityName, temperatureCelsius: cachedTempCelsius);
     });
   }
 
-
+  @override
+  Future<Weather> fetchDetailedWeather(String cityName) {
+    return Future.delayed(Duration(seconds: 1), () {
+      return Weather(
+          cityName: cityName,
+          temperatureCelsius: cachedTempCelsius,
+          temperatureFahrenheit: cachedTempCelsius * 1.8 + 32);
+    });
+  }
 }
 
-class NetWorkError extends Error {
-
-}
+class NetWorkError extends Error {}
