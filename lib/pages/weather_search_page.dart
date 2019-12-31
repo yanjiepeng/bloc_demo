@@ -86,7 +86,6 @@ class WeatherSearchPage extends StatelessWidget {
 class CityInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: TextField(

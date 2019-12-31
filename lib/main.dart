@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Weather App",
       home: BlocProvider(
-          builder: (context) => WeatherBloc(FakeWeatherRepository()),
+          builder: (context) => WeatherBloc(TrueWeatherRespository()),
           child: WeatherSearchPage()),
     );
   }
