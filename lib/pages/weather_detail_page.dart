@@ -60,12 +60,10 @@ class _WeatherDetailPageState extends State<WeatherDetailPage> {
           ),
         ),
         Text(
-          // Display the Celsius temperature with 1 decimal place
           "${weather.temperatureCelsius.toStringAsFixed(1)} °C",
           style: TextStyle(fontSize: 80),
         ),
         Text(
-          // Display the Fahrenheit temperature with 1 decimal place
           "${weather.temperatureFahrenheit?.toStringAsFixed(1)} °F",
           style: TextStyle(fontSize: 80),
         ),
