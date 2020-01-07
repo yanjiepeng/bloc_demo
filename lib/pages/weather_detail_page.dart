@@ -60,10 +60,12 @@ class _WeatherDetailPageState extends State<WeatherDetailPage> {
           ),
         ),
         Text(
+          //显示摄氏度
           "${weather.temperatureCelsius.toStringAsFixed(1)} °C",
           style: TextStyle(fontSize: 80),
         ),
         Text(
+          //显示华氏度
           "${weather.temperatureFahrenheit?.toStringAsFixed(1)} °F",
           style: TextStyle(fontSize: 80),
         ),
